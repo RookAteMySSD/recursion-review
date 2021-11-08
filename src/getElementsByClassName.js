@@ -6,5 +6,17 @@
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className
 ) {
-  // your code here
+  var Result = [];
+  var Document = document.body;
+  var DocLoop = function(Doc) {
+    var ClassList = Doc.ClassList;
+    if (ClassList !== undefined && ClassList.contains(className)) {
+      Result.push(Doc);
+    }
+    Doc.childNodes.forEach(function(child) {
+      DocLoop(child);
+    });
+  };
+  DocLoop(Document);
+  return Result;
 };
