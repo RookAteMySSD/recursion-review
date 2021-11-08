@@ -18,6 +18,8 @@ var stringifyJSON = function(obj) {
   if (typeof obj === 'string') {
     return '"' + obj + '"';
   }
+
+  //Arrays & Objects
   if (typeof obj === 'object') {
     if (Array.isArray(obj)) {
       if (obj.length === 0) {
@@ -45,6 +47,9 @@ var stringifyJSON = function(obj) {
       }
       for (var i = 0; i < emptyArr1.length; i++) {
         emptyArr3.push(emptyArr1[i] + ':' + emptyArr2[i]);
+        if (typeof(emptyArr3[i]) === 'function' || typeof(emptyArr2[i]) === 'undefined') {
+          emptyArr3.pop();
+        }
       }
       return '{' + emptyArr3 + '}';
     }
